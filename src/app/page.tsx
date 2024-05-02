@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Gallery from "./_components/Gallery";
+import { ModeToggle } from "./_components/ModeToggle";
 
 
 
