@@ -1,9 +1,11 @@
 "use client";
 
+import { useRouter } from 'next/navigation';
 import { UploadButton } from '../_utils/uploadthing';
-import React from 'react'
 
 export const SimpleUploadButton = () => {
+    const router = useRouter()
+
     return (
         <UploadButton
             appearance={{
@@ -14,8 +16,7 @@ export const SimpleUploadButton = () => {
             endpoint="imageGallery"
             onClientUploadComplete={(res) => {
                 // Do something with the response
-                console.log("Files: ", res);
-                alert("Upload Completed");
+                router.refresh();
             }}
             onUploadError={(error: Error) => {
                 // Do something with the error.
