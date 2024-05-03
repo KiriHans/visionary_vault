@@ -1,23 +1,50 @@
-import PhotoAlbum from "react-photo-album";
+import ImageList from '@mui/material/ImageList';
+import ImageListItem from '@mui/material/ImageListItem';
+import Image from 'next/image';
+import { MOCK_IMAGES } from '../_mock/imagesMock';
 
-const mockData = [
-  "https://utfs.io/f/e1bb3159-423d-4c84-ac8c-5cfbd86b327c-ngeocy.png",
-  "https://utfs.io/f/b33fb0b9-bae1-47c5-8615-b9a12935a673-z6lvsc.jpg",
-  "https://utfs.io/f/6c2538b9-dff7-4fef-a58a-5b2e171b2e46-k8xrbv.png",
-  "https://utfs.io/f/14055197-f1f4-483d-a033-724c763bf1ef-5zlr1d.jpg",
-  "https://utfs.io/f/5a24016e-c3e3-4a54-8be8-0ad4774333d0-8nazuw.jpg",
-]
+export const Gallery = () => {
 
-const mockImages = mockData.map((url, id) => ({
-  src: url,
-  width: 500,
-  height: 500,
-}))
-
-function gallery() {
   return (
-    <div></div>
+    <>
+
+      <ImageList variant="masonry" cols={5} gap={4} className='w-auto sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-5'>
+        {MOCK_IMAGES.map((photo) => (
+          <ImageListItem key={photo.src} >
+            <div className="flex flex-col" >
+              <Image
+                src={photo.src}
+                height={480}
+                width={480}
+                style={
+                  {
+                    objectFit: "contain"
+                  }
+                }
+                alt={photo.name}
+
+              />
+            </div>
+
+
+
+
+            {/* <img
+            srcSet={`${photo.src}?w=248&fit=crop&auto=format&dpr=2 2x`}
+            src={`${photo.src}?w=248&fit=crop&auto=format`}
+            alt={photo.name}
+            loading="lazy"
+          /> */}
+          </ImageListItem>
+        ))}
+      </ImageList>
+      <script>
+        console.log("maria");
+      </script>
+    </>
+
+
   )
 }
 
-export default gallery
+

@@ -1,13 +1,12 @@
-import Link from "next/link";
-import Gallery from "./_components/Gallery";
-import { ModeToggle } from "./_components/ModeToggle";
+
+import { SimpleGallery } from "./_components/SimpleGallery";
 
 
 
 export default function HomePage() {
   return (
     <main className="p-10">
-      <Gallery></Gallery>
+      <SimpleGallery></SimpleGallery>
     </main>
   );
 }

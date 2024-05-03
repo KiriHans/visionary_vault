@@ -2,6 +2,7 @@ import "~/styles/globals.css";
 
 import { Inter } from "next/font/google";
 import { ThemeProvider } from "./_components/ThemeProvider";
+import TopNav from "./_components/TopNav";
 
 
 const inter = Inter({
@@ -22,7 +23,6 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-
       <body className={`font-sans ${inter.variable}`}>
         <ThemeProvider
           attribute="class"
@@ -30,6 +30,9 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
+          <header>
+            <TopNav></TopNav>
+          </header>
           {children}
         </ThemeProvider>
       </body>
