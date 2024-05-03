@@ -27,20 +27,10 @@ export const Gallery = () => {
             </div>
 
 
-
-
-            {/* <img
-            srcSet={`${photo.src}?w=248&fit=crop&auto=format&dpr=2 2x`}
-            src={`${photo.src}?w=248&fit=crop&auto=format`}
-            alt={photo.name}
-            loading="lazy"
-          /> */}
           </ImageListItem>
         ))}
       </ImageList>
-      <script>
-        console.log("maria");
-      </script>
+
     </>
 
 
