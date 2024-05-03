@@ -6,7 +6,7 @@ export const MOCK_DATA = [
   "https://utfs.io/f/5a24016e-c3e3-4a54-8be8-0ad4774333d0-8nazuw.jpg",
 ] as const;
 
-export const MOCK_IMAGES = MOCK_DATA.map(
+export const MOCK_IMAGES = [...MOCK_DATA, ...MOCK_DATA, ...MOCK_DATA].map(
   (url, id) =>
     ({
       src: url,

@@ -1,14 +1,17 @@
+import { ModeToggle } from "./ModeToggle"
+import { SimpleUploadButton } from "./SimpleUploadButton"
 
-import React from 'react'
-import { UploadButton } from '../_utils/uploadthing';
-
-function TopNav() {
+export const TopNav = () => {
     return (
-        <nav className='flex flex-row justify-around p-3'>
-            <div></div>
+        <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+            <nav className='container flex flex-row justify-between items-center px-5 py-3'>
 
-        </nav>
+                <SimpleUploadButton />
+                <ModeToggle />
+
+            </nav>
+        </header>
+
     )
 }
 
-export default TopNav
