@@ -3,6 +3,9 @@ import "~/styles/globals.css";
 import { Inter } from "next/font/google";
 import { ThemeProvider } from "./_components/ThemeProvider";
 import { TopNav } from "./_components/TopNav";
+import { ClerkProvider } from "@clerk/nextjs";
+import { dark } from "@clerk/themes";
+
 
 
 const inter = Inter({
@@ -21,21 +24,24 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body className={`font-sans ${inter.variable}`}>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          <TopNav></TopNav>
+    <ClerkProvider appearance={{ userProfile: { baseTheme: dark } }}>
+      <html lang="en" suppressHydrationWarning>
+        <body className={`font-sans ${inter.variable}`}>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            <TopNav></TopNav>
 
-          {children}
-        </ThemeProvider>
-      </body>
-
-    </html >
+            {children}
+          </ThemeProvider>
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }
+
