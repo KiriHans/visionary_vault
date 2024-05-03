@@ -13,7 +13,7 @@ export const env = createEnv({
     POSTGRES_URL_NO_SSL: z.string().url().startsWith("postgres://"),
     POSTGRES_URL_NON_POOLING: z.string().url().startsWith("postgres://"),
     POSTGRES_USER: z.string(),
-    POSTGRES_HOST: z.string().url(),
+    POSTGRES_HOST: z.string(),
     POSTGRES_PASSWORD: z.string(),
     POSTGRES_DATABASE: z.string(),
 
