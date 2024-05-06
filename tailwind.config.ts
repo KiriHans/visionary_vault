@@ -20,6 +20,10 @@ const config = {
       },
     },
     extend: {
+      backgroundImage: {
+        polka: "url('/img/hero-pattern.svg')",
+        "footer-texture": "url('/img/footer-texture.png')",
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
@@ -69,10 +73,20 @@ const config = {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: "0" },
         },
+        gradient: {
+          "0%, 100%": { backgroundPosition: "0% 0%" },
+          "50%": { backgroundPosition: "50% 50%" },
+        },
+        wiggle: {
+          "0%, 100%": { transform: "rotate(-3deg)" },
+          "50%": { transform: "rotate(3deg)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        gradient: "gradient 15s ease infinite",
+        wiggle: "wiggle 1s ease-in-out infinite",
       },
     },
   },
