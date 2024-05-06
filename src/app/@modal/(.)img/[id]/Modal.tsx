@@ -1,13 +1,10 @@
 'use client';
 import {
     Dialog,
-    DialogClose,
     DialogContent,
-    DialogFooter,
 } from "~/components/ui/dialog"
 
-import Link from "next/link"
-import { Button } from "~/components/ui/button"
+
 import { useRouter } from "next/navigation";
 import { ElementRef, useEffect, useRef } from "react";
 
@@ -26,19 +23,12 @@ export default function Modal({ children }: { children: React.ReactNode }) {
     }
 
     return (
-        <Dialog defaultOpen >
-            <DialogContent className="max-w-full bg-background " onCloseAutoFocus={onDismiss}>
-                {children}
-            </DialogContent>
-            <DialogFooter>
-                <DialogClose>
-                    <Link href="/"><Button>
-                        close
-                    </Button></Link>
-
-                </DialogClose>
-            </DialogFooter>
-
-        </Dialog>
+        <div className="rounded-lg">
+            <Dialog defaultOpen >
+                <DialogContent className="max-w-full bg-transparent border-0 rounded-lg text-white shadow-none p-0 w-11/12" onCloseAutoFocus={onDismiss}>
+                    {children}
+                </DialogContent>
+            </Dialog>
+        </div>
     )
 }

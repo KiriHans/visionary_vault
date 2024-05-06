@@ -5,9 +5,11 @@ export default function ImageLayout({ children }: {
     children: React.ReactNode;
 }) {
     return (
-        <div>
+        <div className='flex flex-col flex-grow min-h-screen'>
             <TopNav />
+
             {children}
+
         </div>
 
     )

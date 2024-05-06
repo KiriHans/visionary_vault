@@ -1,8 +1,8 @@
 import { auth } from "@clerk/nextjs/server";
 import { db } from "./db";
+import { SelectImage } from "./db/schema";
 
 import "server-only";
-import { SelectImage } from "./db/schema";
 
 export const getImages = async (): Promise<SelectImage[]> => {
   const user = auth();
