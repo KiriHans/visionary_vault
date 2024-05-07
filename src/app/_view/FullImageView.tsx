@@ -16,7 +16,7 @@ export default async function FullImageView({ imageId }: { imageId: string }) {
             </div>
             <div className='flex flex-col items-center justify-start px-3 w-80 bg-gray-800/40 rounded-r-lg h-auto' >
                 <div className='pt-5 p-5 flex flex-col items-center '>
-                    <span className='text-center text-lg font-bold'>Created At:</span>
+                    <span className='text-center text-lg font-bold'>Uploaded On:</span>
                     {image.createdAt.toLocaleString()}
                 </div>
                 <div className='p-2 flex flex-col items-center '>

@@ -6,17 +6,10 @@ import {
 
 
 import { useRouter } from "next/navigation";
-import { ElementRef, useEffect, useRef } from "react";
 
 export default function Modal({ children }: { children: React.ReactNode }) {
     const router = useRouter();
-    const dialogRef = useRef<ElementRef<"dialog">>(null);
 
-    useEffect(() => {
-        if (!dialogRef.current?.open) {
-            dialogRef.current?.showModal();
-        }
-    }, []);
 
     function onDismiss() {
         router.back();
