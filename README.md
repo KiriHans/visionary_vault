@@ -8,10 +8,10 @@ A rough Idea of the objectives while making the website
 - [x] Scaffold basic UI with mock data
 - [x] Actually set up a database (vercel postgres)
 - [x] Add auth (w/ clerk)
-- [] Attach database to UI
-- [] Add Image upload
-- [] Error management (w/ Sentry)
-- [] Routing/Image page (Parallel route)
+- [x] Attach database to UI
+- [x] Add Image upload
+- [x] Error management (w/ Sentry)
+- [x] Routing/Image page (Parallel route)
 - [] Delete button (w/ server actions)
 - [] Analytics (posthog)
 - [] Ratelimiting (upstash)
