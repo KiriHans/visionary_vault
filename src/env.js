@@ -20,6 +20,9 @@ export const env = createEnv({
     UPLOADTHING_APP_ID: z.string(),
 
     CLERK_SECRET_KEY: z.string(),
+
+    SENTRY_AUTH_TOKEN: z.string(),
+
     NODE_ENV: z
       .enum(["development", "test", "production"])
       .default("development"),
@@ -53,6 +56,9 @@ export const env = createEnv({
     UPLOADTHING_APP_ID: process.env.UPLOADTHING_APP_ID,
 
     CLERK_SECRET_KEY: process.env.CLERK_SECRET_KEY,
+
+    SENTRY_AUTH_TOKEN: process.env.SENTRY_AUTH_TOKEN,
+
     NODE_ENV: process.env.NODE_ENV,
 
     // NEXT_PUBLIC_CLIENTVAR: process.env.NEXT_PUBLIC_CLIENTVAR,

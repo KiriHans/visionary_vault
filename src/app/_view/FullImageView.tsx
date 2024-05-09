@@ -1,7 +1,10 @@
-import React from 'react'
 import { SelectImage } from '~/server/db/schema';
 import { getImage } from '~/server/queries';
 import { clerkClient } from '@clerk/nextjs/server';
+import DeleteButton from '../_components/DeleteButton';
+
+export const dynamic = "force-dynamic";
+
 
 export default async function FullImageView({ imageId }: { imageId: string }) {
     const idToNumber = Number(imageId);
@@ -23,7 +26,7 @@ export default async function FullImageView({ imageId }: { imageId: string }) {
                     <span className='text-center text-lg font-bold'>Uploaded by:</span>
                     {userInfo.fullName}
                 </div>
-
+                <DeleteButton id={idToNumber} />
             </div>
         </div>
 

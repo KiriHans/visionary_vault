@@ -81,12 +81,34 @@ const config = {
           "0%, 100%": { transform: "rotate(-3deg)" },
           "50%": { transform: "rotate(3deg)" },
         },
+        prixClipFix: {
+          "0 %": { "clip-path": "polygon(50 % 50 %, 0 0, 0 0, 0 0, 0 0, 0 0)" },
+          "25 %": {
+            "clip-path":
+              "polygon(50 % 50 %, 0 0, 100 % 0, 100 % 0, 100 % 0, 100 % 0)",
+          },
+          "50 %": {
+            "clip-path":
+              "polygon(50 % 50 %, 0 0, 100 % 0, 100 % 100 %, 100 % 100 %, 100 % 100 %)",
+          },
+          "75 %": {
+            "clip-path":
+              "polygon(50 % 50 %, 0 0, 100 % 0, 100 % 100 %, 0 100 %, 0 100 %)",
+          },
+          "100 %": {
+            "clip-path":
+              "polygon(50 % 50 %, 0 0, 100 % 0, 100 % 100 %, 0 100 %, 0 0)",
+          },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
         gradient: "gradient 15s ease infinite",
         wiggle: "wiggle 1s ease-in-out infinite",
+        prixClipFix: "prixClipFix 2s linear infinite",
+        prixClipFixBack:
+          "prixClipFix 2s linear infinite, rotate 0.5s linear infinite reverse",
       },
     },
   },

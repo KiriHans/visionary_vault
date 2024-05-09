@@ -1,10 +1,18 @@
+"use server";
+// import "server-only";
+
 import { auth } from "@clerk/nextjs/server";
 import { db } from "./db";
-import { SelectImage } from "./db/schema";
+import { SelectImage, images } from "./db/schema";
+import { and, eq } from "drizzle-orm";
+import { redirect } from "next/navigation";
+import { IMAGES_PER_PAGE } from "~/config/constants";
+import { revalidatePath } from "next/cache";
 
-import "server-only";
-
-export const getImages = async (): Promise<SelectImage[]> => {
+export const getImages = async (
+  limit: number = IMAGES_PER_PAGE,
+  offset: number = 0,
+): Promise<SelectImage[]> => {
   const user = auth();
 
   if (!user.userId) throw new Error("Unauthorized");
@@ -12,6 +20,8 @@ export const getImages = async (): Promise<SelectImage[]> => {
   const images = await db.query.images.findMany({
     where: (photo, { eq }) => eq(photo.userId, user.userId),
     orderBy: (photo, { desc }) => [desc(photo.id)],
+    limit: limit,
+    offset: offset,
   });
 
   return images;
@@ -32,4 +42,18 @@ export const getImage = async (imageId: number): Promise<SelectImage> => {
   if (!image) throw new Error("Image not found");
 
   return image;
+};
+export const deleteImage = async (imageId: number): Promise<void> => {
+  if (isNaN(imageId)) throw new Error("Invalid imageId");
+
+  const user = auth();
+
+  if (!user.userId) throw new Error("Unauthorized");
+
+  await db
+    .delete(images)
+    .where(and(eq(images.userId, user.userId), eq(images.id, imageId)));
+
+  revalidatePath("/");
+  // redirect("/");
 };
