@@ -22,16 +22,7 @@ export const ClerkUserButton = () => {
         <UserButton appearance={{
             baseTheme: theme === "dark" ? dark : undefined,
         }} >
-            <UserButton.UserProfilePage
-                label="Terms"
-                labelIcon={<DotIcon />}
-                url="terms"
-            >
-                <div>
-                    <h1>Custom Terms Page</h1>
-                    <p>This is the custom terms page</p>
-                </div>
-            </UserButton.UserProfilePage>
+
         </UserButton>
 
     )

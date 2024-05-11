@@ -9,12 +9,11 @@ import {
 
 import { useRouter, usePathname } from "next/navigation";
 import { Button } from "~/components/ui/button";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 export default function Modal({ children }: { children: React.ReactNode }) {
     const router = useRouter();
     const [open, setOpen] = useState(true);
-    const pathname = usePathname()
 
     function onDismiss(open: boolean) {
         setOpen(open)
@@ -22,27 +21,19 @@ export default function Modal({ children }: { children: React.ReactNode }) {
         console.log("on Dismiss")
     }
 
-    // useEffect(() => {
-    //     console.log("Pathname: ", pathname)
-    //     if (pathname === "/") setOpen(false);
-    // }, [pathname])
-
-
 
     return (
-        <div className="rounded-lg">
-            <Dialog open={open} onOpenChange={onDismiss}>
-                <DialogContent className="max-w-fit h-11/12 bg-transparent border-0 rounded-lg text-white shadow-none p-0 w-11/12" >
-                    {children}
-                    <DialogClose asChild >
-                        <Button type="button" variant="secondary" >
-                            Close
-                        </Button>
-                    </DialogClose>
-                </DialogContent>
+        <Dialog open={open} onOpenChange={onDismiss}>
+            <DialogContent className="w-auto h-11/12 bg-transparent border-0 rounded-lg text-white shadow-none p-0 " >
+                {children}
+                <DialogClose asChild >
+                    <Button type="button" variant="secondary" >
+                        Close
+                    </Button>
+                </DialogClose>
+            </DialogContent>
 
-            </Dialog>
-        </div>
+        </Dialog>
     )
 }
 
