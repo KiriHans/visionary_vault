@@ -10,6 +10,8 @@ import { extractRouterConfig } from "uploadthing/server";
 import { ourFileRouter } from "./api/uploadthing/core";
 import { Toaster } from "~/components/ui/sonner";
 
+import { Provider } from 'jotai'
+
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-sans",
@@ -48,13 +50,14 @@ export default function RootLayout({
             enableSystem
             disableTransitionOnChange
           >
-            {children}
-            <div>
-              {modal}
-
-            </div>
-            <div id="modal-root" />
-            <Toaster />
+            <Provider>
+              {children}
+              <div>
+                {modal}
+              </div>
+              <div id="modal-root" />
+              <Toaster />
+            </Provider>
           </ThemeProvider>
         </body>
       </html>

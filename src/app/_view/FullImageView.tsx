@@ -25,7 +25,7 @@ export default async function FullImageView({ imageId }: { imageId: string }) {
                     <span className='text-center text-lg font-bold'>Uploaded by:</span>
                     {userInfo.fullName}
                 </div>
-                <DeleteButton id={idToNumber} />
+                <DeleteButton idImage={idToNumber} key={idToNumber} />
             </div>
         </div>
 

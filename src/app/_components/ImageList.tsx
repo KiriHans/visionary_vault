@@ -8,15 +8,22 @@ import Link from 'next/link';
 import ImageGallery from './ImageGallery';
 import { Spinner } from './Spinner';
 
+import { useHydrateAtoms } from 'jotai/utils';
+import { imageListAtom } from '~/atoms/imageAtoms';
+import { useAtom } from 'jotai';
+
 
 
 export default function ImageList({ imageList = [] }: { imageList?: SelectImage[] }) {
     const limit = IMAGES_PER_PAGE;
 
     const [offset, setOffset] = useState(IMAGES_PER_PAGE);
-    const [images, setImages] = useState<SelectImage[]>([...imageList]);
-
     const [isLoading, setIsLoading] = useState(false);
+
+    useHydrateAtoms([[imageListAtom, imageList]])
+
+    const [images, setImages] = useAtom(imageListAtom);
+
 
 
     const [scrollTrigger, isInView] = useInView();

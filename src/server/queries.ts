@@ -7,6 +7,7 @@ import { SelectImage, images } from "./db/schema";
 import { and, eq } from "drizzle-orm";
 import { IMAGES_PER_PAGE } from "~/config/constants";
 import { revalidatePath } from "next/cache";
+import { redirect } from "next/navigation";
 
 export const getImages = async (
   limit: number = IMAGES_PER_PAGE,
@@ -28,7 +29,7 @@ export const getImages = async (
 
 export const getImage = async (imageId: number): Promise<SelectImage> => {
   if (isNaN(imageId)) throw new Error("Invalid imageId");
-
+  console.log("image id: ", imageId);
   const user = auth();
 
   if (!user.userId) throw new Error("Unauthorized");
@@ -52,7 +53,4 @@ export const deleteImage = async (imageId: number): Promise<void> => {
   await db
     .delete(images)
     .where(and(eq(images.userId, user.userId), eq(images.id, imageId)));
-
-  revalidatePath("/");
-  // redirect("/");
 };
