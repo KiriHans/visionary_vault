@@ -10,10 +10,11 @@ import { Spinner } from './Spinner';
 
 
 
-export default function LoadMore() {
+export default function ImageList({ imageList = [] }: { imageList?: SelectImage[] }) {
     const limit = IMAGES_PER_PAGE;
+
     const [offset, setOffset] = useState(IMAGES_PER_PAGE);
-    const [images, setImages] = useState<SelectImage[]>([]);
+    const [images, setImages] = useState<SelectImage[]>([...imageList]);
 
     const [isLoading, setIsLoading] = useState(false);
 
@@ -39,14 +40,16 @@ export default function LoadMore() {
 
     return (
         <>
-            {images.map((photo, index) => (
-                <li key={photo.id} className='relative bg-slate-600'>
-                    <Link href={`/img/${photo.id}`} passHref>
-                        <ImageGallery image={photo} />
-                    </Link>
-                </li>
+            <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-5 relative">
+                {images.map((photo, index) => (
+                    <li key={photo.id} className='relative'>
+                        <Link href={`/img/${photo.id}`} passHref>
+                            <ImageGallery image={photo} priority={index < limit} />
+                        </Link>
+                    </li>
 
-            ))}
+                ))}
+            </ul>
             <div ref={scrollTrigger} className='h-auto flex justify-center items-center'>
                 {isInView && isLoading && (
                     <Spinner />
