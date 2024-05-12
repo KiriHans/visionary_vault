@@ -5,7 +5,6 @@ import { auth } from "@clerk/nextjs/server";
 import { db } from "./db";
 import { SelectImage, images } from "./db/schema";
 import { and, eq } from "drizzle-orm";
-import { redirect } from "next/navigation";
 import { IMAGES_PER_PAGE } from "~/config/constants";
 import { revalidatePath } from "next/cache";
 
@@ -44,7 +43,7 @@ export const getImage = async (imageId: number): Promise<SelectImage> => {
   return image;
 };
 export const deleteImage = async (imageId: number): Promise<void> => {
-  if (isNaN(imageId)) throw new Error("Invalid imageId");
+  if (isNaN(imageId)) throw new Error("Invalid image id");
 
   const user = auth();
 
