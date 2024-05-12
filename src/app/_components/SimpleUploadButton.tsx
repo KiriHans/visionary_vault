@@ -9,8 +9,6 @@ import { Spinner } from './Spinner';
 export const SimpleUploadButton = () => {
     const router = useRouter()
 
-
-
     return (
         <>
             <UploadButton
@@ -48,19 +46,22 @@ export const SimpleUploadButton = () => {
                 }}
                 endpoint="imageGallery"
                 onUploadBegin={() => {
-                    toast("Uploading", {
-                        duration: 1000,
+                    toast(<div className='flex gap-2 items-center text-lg' ><Spinner radius={22} /> Uploading...</div>, {
+                        duration: 5000,
                         id: "upload-begin"
                     })
                 }}
                 onClientUploadComplete={(res) => {
                     toast.dismiss("upload-begin");
-                    toast("Upload Completed!")
+                    toast("Upload Completed!", {
+                        duration: 5000,
+                        id: "upload-completed"
+                    })
                     router.refresh();
                 }}
                 onUploadError={(error: Error) => {
-                    // Do something with the error.
-                    alert(`ERROR! ${error.message}`);
+                    toast.dismiss("upload-begin");
+                    toast.error("Upload failed");
                 }}
 
             />
