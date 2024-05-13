@@ -11,6 +11,7 @@ import { ourFileRouter } from "./api/uploadthing/core";
 import { Toaster } from "~/components/ui/sonner";
 
 import { Provider } from 'jotai'
+import { CSPostHogProvider } from "./_analytics/provider";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -33,34 +34,36 @@ export default function RootLayout({
 
   return (
     <ClerkProvider appearance={{ userProfile: { baseTheme: dark } }}>
-      <html lang="en" suppressHydrationWarning>
-        <NextSSRPlugin
-          /**
-           * The `extractRouterConfig` will extract **only** the route configs
-           * from the router to prevent additional information from being
-           * leaked to the client. The data passed to the client is the same
-           * as if you were to fetch `/api/uploadthing` directly.
-           */
-          routerConfig={extractRouterConfig(ourFileRouter)}
-        />
-        <body className={`font-sans ${inter.variable}`}>
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange
-          >
-            <Provider>
-              {children}
-              <div>
-                {modal}
-              </div>
-              <div id="modal-root" />
-              <Toaster />
-            </Provider>
-          </ThemeProvider>
-        </body>
-      </html>
+      <CSPostHogProvider>
+        <html lang="en" suppressHydrationWarning>
+          <NextSSRPlugin
+            /**
+             * The `extractRouterConfig` will extract **only** the route configs
+             * from the router to prevent additional information from being
+             * leaked to the client. The data passed to the client is the same
+             * as if you were to fetch `/api/uploadthing` directly.
+             */
+            routerConfig={extractRouterConfig(ourFileRouter)}
+          />
+          <body className={`font-sans ${inter.variable}`}>
+            <ThemeProvider
+              attribute="class"
+              defaultTheme="system"
+              enableSystem
+              disableTransitionOnChange
+            >
+              <Provider>
+                {children}
+                <div>
+                  {modal}
+                </div>
+                <div id="modal-root" />
+                <Toaster />
+              </Provider>
+            </ThemeProvider>
+          </body>
+        </html>
+      </CSPostHogProvider>
     </ClerkProvider>
   );
 }
