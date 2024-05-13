@@ -12,6 +12,6 @@ A rough Idea of the objectives while making the website
 - [x] Add Image upload
 - [x] Error management (w/ Sentry)
 - [x] Routing/Image page (Parallel route)
-- [] Delete button (w/ server actions)
+- [x] Delete button (w/ server actions)
 - [] Analytics (posthog)
 - [] Ratelimiting (upstash)

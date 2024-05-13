@@ -6,6 +6,7 @@ import { db } from "./db";
 import { type SelectImage, images } from "./db/schema";
 import { and, eq } from "drizzle-orm";
 import { IMAGES_PER_PAGE } from "~/config/constants";
+import analyticsServerClient from "./analytics";
 
 export const getImages = async (
   limit: number = IMAGES_PER_PAGE,
@@ -48,7 +49,17 @@ export const deleteImage = async (imageId: number): Promise<void> => {
 
   if (!user.userId) throw new Error("Unauthorized");
 
-  await db
+  const deletedImages = await db
     .delete(images)
-    .where(and(eq(images.userId, user.userId), eq(images.id, imageId)));
+    .where(and(eq(images.userId, user.userId), eq(images.id, imageId)))
+    .returning();
+
+  analyticsServerClient.capture({
+    distinctId: user.userId,
+    event: "delete image",
+    properties: {
+      imageId: imageId,
+      amountDeleted: deletedImages.length,
+    },
+  });
 };
