@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useState } from 'react'
 import { IMAGES_PER_PAGE } from '~/config/constants';
-import { SelectImage } from '~/server/db/schema';
+import { type SelectImage } from '~/server/db/schema';
 import { getImages } from '~/server/queries';
 import { useInView } from 'react-intersection-observer';
 import Link from 'next/link';
@@ -11,6 +11,7 @@ import { Spinner } from './Spinner';
 import { useHydrateAtoms } from 'jotai/utils';
 import { imageListAtom } from '~/atoms/imageAtoms';
 import { useAtom } from 'jotai';
+import { toast } from 'sonner';
 
 
 
@@ -30,8 +31,20 @@ export default function ImageList({ imageList = [] }: { imageList?: SelectImage[
 
     const loadMoreImages = async () => {
         setIsLoading(true);
+        let apiImages: SelectImage[];
 
-        const apiImages = await getImages(limit, offset);
+        try {
+            apiImages = await getImages(limit, offset);
+        } catch (error) {
+            apiImages = [];
+
+            if (error instanceof Error) {
+                toast.error(error.message);
+                console.error(error.message);
+            } else {
+                toast.error(`Something failed.`)
+            }
+        }
 
         setImages((prevImages) => [...prevImages, ...apiImages])
         setOffset((prevOffset) => prevOffset + IMAGES_PER_PAGE);
@@ -41,8 +54,10 @@ export default function ImageList({ imageList = [] }: { imageList?: SelectImage[
 
     useEffect(() => {
         if (isInView) {
-            loadMoreImages();
+            void loadMoreImages();
+
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [isInView])
 
     return (
@@ -50,7 +65,7 @@ export default function ImageList({ imageList = [] }: { imageList?: SelectImage[
             <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-5 relative">
                 {images.map((photo, index) => (
                     <li key={photo.id} className='relative'>
-                        <Link href={`/img/${photo.id}`} passHref>
+                        <Link href={`/img/${photo.id}`} scroll={false} passHref>
                             <ImageGallery image={photo} priority={index < limit} />
                         </Link>
                     </li>

@@ -3,15 +3,13 @@
 
 import { auth } from "@clerk/nextjs/server";
 import { db } from "./db";
-import { SelectImage, images } from "./db/schema";
+import { type SelectImage, images } from "./db/schema";
 import { and, eq } from "drizzle-orm";
 import { IMAGES_PER_PAGE } from "~/config/constants";
-import { revalidatePath } from "next/cache";
-import { redirect } from "next/navigation";
 
 export const getImages = async (
   limit: number = IMAGES_PER_PAGE,
-  offset: number = 0,
+  offset = 0,
 ): Promise<SelectImage[]> => {
   const user = auth();
 

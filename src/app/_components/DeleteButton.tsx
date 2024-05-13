@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import { imageListAtom } from "~/atoms/imageAtoms";
 import { Button } from "~/components/ui/button"
-import { SelectImage } from "~/server/db/schema";
+import { type SelectImage } from "~/server/db/schema";
 import { deleteImage } from "~/server/queries";
 
 export default function DeleteButton({ idImage: id }: { idImage: number }) {
@@ -22,7 +22,7 @@ export default function DeleteButton({ idImage: id }: { idImage: number }) {
                     await deleteImage(id);
                 } catch (error) {
                     toast.error(`Something failed while deleting image\nPlease try again.`)
-                    setImages((state) => {
+                    setImages(() => {
                         return imageList;
                     })
                 }

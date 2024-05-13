@@ -1,4 +1,4 @@
-import { SelectImage } from '~/server/db/schema'
+import { type SelectImage } from '~/server/db/schema'
 import Image from 'next/image';
 
 

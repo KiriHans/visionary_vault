@@ -5,9 +5,15 @@ import { UploadButton } from '../_utils/uploadthing';
 import { toast } from 'sonner';
 import { Upload } from 'lucide-react';
 import { Spinner } from './Spinner';
+import { imageListAtom } from '~/atoms/imageAtoms';
+import { useSetAtom } from 'jotai';
+
+import { imageSchema } from "~/server/db/schema";
+
 
 export const SimpleUploadButton = () => {
     const router = useRouter()
+    const setImages = useSetAtom(imageListAtom);
 
     return (
         <>
@@ -33,11 +39,7 @@ export const SimpleUploadButton = () => {
                             </>
                         )
                     },
-                    clearBtn: ({ isUploading }) => {
-                        return (
-                            <Spinner radius={26} />
-                        )
-                    }
+
                 }}
                 appearance={{
                     button: "bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2 after:bg-secondary",
@@ -45,25 +47,36 @@ export const SimpleUploadButton = () => {
                     container: "w-max flex-row rounded-md border-cyan-300 gap-3"
                 }}
                 endpoint="imageGallery"
+
                 onUploadBegin={() => {
                     toast(<div className='flex gap-2 items-center text-lg' ><Spinner radius={22} /> Uploading...</div>, {
                         duration: 5000,
                         id: "upload-begin"
-                    })
+                    });
                 }}
-                onClientUploadComplete={(res) => {
+                onClientUploadComplete={(data) => {
                     toast.dismiss("upload-begin");
                     toast("Upload Completed!", {
                         duration: 5000,
                         id: "upload-completed"
                     })
+
+                    data.forEach((metadata) => {
+                        const image = imageSchema.parse(JSON.parse(metadata.serverData.image));
+
+                        setImages((state) => {
+                            return [image].concat([...state]);
+                        })
+                    })
+
+
+
                     router.refresh();
                 }}
-                onUploadError={(error: Error) => {
+                onUploadError={() => {
                     toast.dismiss("upload-begin");
                     toast.error("Upload failed");
                 }}
-
             />
         </>
 
