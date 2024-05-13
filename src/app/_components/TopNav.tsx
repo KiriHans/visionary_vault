@@ -3,7 +3,7 @@ import { ClerkUserButton } from "./ClerkUserButton"
 import { ModeToggle } from "./ModeToggle"
 import { SimpleUploadButton } from "./SimpleUploadButton"
 
-import { SignInButton, SignedIn, SignedOut, UserButton } from '@clerk/nextjs'
+import { SignInButton, SignedIn, SignedOut } from '@clerk/nextjs'
 
 export const TopNav = () => {
     return (

@@ -7,7 +7,7 @@ import {
 } from "~/components/ui/dialog"
 
 
-import { useRouter, usePathname } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { Button } from "~/components/ui/button";
 import { useState } from "react";
 

@@ -1,6 +1,6 @@
 'use client';
 
-import Image, { type ImageLoader } from "next/image";
+import Image from "next/image";
 import type { RenderPhotoProps } from "react-photo-album";
 
 
