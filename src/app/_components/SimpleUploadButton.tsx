@@ -9,10 +9,12 @@ import { imageListAtom } from '~/atoms/imageAtoms';
 import { useSetAtom } from 'jotai';
 
 import { imageSchema } from "~/server/db/schema";
+import { usePostHog } from 'posthog-js/react';
 
 
 export const SimpleUploadButton = () => {
     const router = useRouter()
+    const posthog = usePostHog();
     const setImages = useSetAtom(imageListAtom);
 
     return (
@@ -49,6 +51,7 @@ export const SimpleUploadButton = () => {
                 endpoint="imageGallery"
 
                 onUploadBegin={() => {
+                    posthog?.capture('upload begin')
                     toast(<div className='flex gap-2 items-center text-lg' ><Spinner radius={22} /> Uploading...</div>, {
                         duration: 5000,
                         id: "upload-begin"

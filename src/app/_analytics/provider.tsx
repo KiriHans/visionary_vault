@@ -7,7 +7,7 @@ import { useEffect } from 'react'
 if (typeof window !== 'undefined') {
     posthog.init(process.env.NEXT_PUBLIC_POSTHOG_KEY!, {
         api_host: "/ingest",
-        ui_host: 'https://us.i.posthog.com' // or 'https://eu.i.posthog.com' if your PostHog is hosted in Europe
+        ui_host: process.env.NEXT_PUBLIC_POSTHOG_HOST // or 'https://eu.i.posthog.com' if your PostHog is hosted in Europe
     })
 }
 export function CSPostHogProvider({ children }: { children: React.ReactNode }) {
