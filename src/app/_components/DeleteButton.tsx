@@ -7,11 +7,11 @@ import { Button } from "~/components/ui/button"
 import { type SelectImage } from "~/server/db/schema";
 import { deleteImage } from "~/server/queries";
 
-export default function DeleteButton({ idImage: id }: { idImage: number }) {
+export default function DeleteButton({ idImage: id, classnameContainer = '', classnameButton = '' }: { idImage: number, classnameContainer?: string, classnameButton?: string }) {
     const router = useRouter();
     const setImages = useSetAtom(imageListAtom);
     return (
-        <form className='p-3 pb-5' action={
+        <form className={classnameContainer} action={
             async () => {
                 let imageList: SelectImage[];
                 setImages((state) => {
@@ -29,7 +29,7 @@ export default function DeleteButton({ idImage: id }: { idImage: number }) {
                 router.back();
             }
         }>
-            <Button type='submit' variant="destructive">Delete</Button>
+            <Button type='submit' variant="destructive" className={classnameButton}>Delete</Button>
         </form>
     )
 }
