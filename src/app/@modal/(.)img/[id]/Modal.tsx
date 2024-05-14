@@ -2,13 +2,11 @@
 
 import {
     Dialog,
-    DialogClose,
     DialogContent,
 } from "~/components/ui/dialog"
 
 
 import { useRouter } from "next/navigation";
-import { Button } from "~/components/ui/button";
 import { useState } from "react";
 
 export default function Modal({ children }: { children: React.ReactNode }) {
@@ -27,13 +25,7 @@ export default function Modal({ children }: { children: React.ReactNode }) {
             <DialogContent className="max-w-none w-[90vw] h-auto sm:w-3/4 max-h-screen sm:h-5/6 bg-transparent border-0 rounded-lg text-white shadow-none p-0 gap-0" >
                 <div className="relative max-h-[80vh] h-auto flex flex-col">
                     {children}
-
                 </div>
-                {/* <DialogClose asChild className="p-0 sm:absolute sm:right-5 sm:bottom-10 sm:max-w-20 sm:min-w-14 " >
-                    <Button type="button" variant="secondary" >
-                        Close
-                    </Button>
-                </DialogClose> */}
             </DialogContent>
 
         </Dialog>
