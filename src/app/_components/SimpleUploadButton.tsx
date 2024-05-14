@@ -76,9 +76,11 @@ export const SimpleUploadButton = () => {
 
                     router.refresh();
                 }}
-                onUploadError={() => {
+                onUploadError={(error) => {
+                    posthog.capture("upload error", { error })
                     toast.dismiss("upload-begin");
-                    toast.error("Upload failed");
+
+                    toast.error(`Upload failed: ${error.message}`);
                 }}
             />
         </>
