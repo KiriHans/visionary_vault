@@ -16,7 +16,6 @@ export default function Modal({ children }: { children: React.ReactNode }) {
     function onDismiss(open: boolean) {
         setOpen(open)
         router.back();
-        console.log("on Dismiss")
     }
 
 
@@ -31,36 +30,3 @@ export default function Modal({ children }: { children: React.ReactNode }) {
         </Dialog>
     )
 }
-
-
-// import { type ElementRef, useEffect, useRef, useCallback } from "react";
-// import { useRouter } from "next/navigation";
-// import { createPortal } from "react-dom";
-// import { Button } from "~/components/ui/button";
-
-// export default function Modal({ children }: { children: React.ReactNode }) {
-//     const router = useRouter();
-//     const dialogRef = useRef<ElementRef<"dialog">>(null);
-
-//     useEffect(() => {
-//         if (!dialogRef.current?.open) {
-//             dialogRef.current?.showModal();
-//         }
-//     }, []);
-
-//     const onDismiss = useCallback(() => {
-//         router.back()
-//     }, [router])
-
-//     return createPortal(
-//         <dialog
-//             ref={dialogRef}
-//             className="absolute h-screen w-screen bg-black/90"
-//             onClose={onDismiss}
-//         >
-//             {children}
-//             {/* <Button onClick={onDismiss} className="close-button" /> */}
-//         </dialog>,
-//         document.getElementById("modal-root")!,
-//     );
-// }

@@ -28,7 +28,6 @@ export const getImages = async (
 
 export const getImage = async (imageId: number): Promise<SelectImage> => {
   if (isNaN(imageId)) throw new Error("Invalid imageId");
-  console.log("image id: ", imageId);
   const user = auth();
 
   if (!user.userId) throw new Error("Unauthorized");
