@@ -7,6 +7,7 @@ import { type SelectImage, images } from "./db/schema";
 import { and, eq } from "drizzle-orm";
 import { IMAGES_PER_PAGE } from "~/config/constants";
 import analyticsServerClient from "./analytics";
+import { redirect } from "next/navigation";
 
 export const getImages = async (
   limit: number = IMAGES_PER_PAGE,
@@ -61,4 +62,6 @@ export const deleteImage = async (imageId: number): Promise<void> => {
       amountDeleted: deletedImages.length,
     },
   });
+
+  redirect("/");
 };

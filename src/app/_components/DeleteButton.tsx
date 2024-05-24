@@ -1,6 +1,5 @@
 "use client";
 import { useSetAtom } from "jotai";
-import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import { imageListAtom } from "~/atoms/imageAtoms";
 import { Button } from "~/components/ui/button"
@@ -8,7 +7,6 @@ import { type SelectImage } from "~/server/db/schema";
 import { deleteImage } from "~/server/queries";
 
 export default function DeleteButton({ idImage: id, classnameContainer = '', classnameButton = '' }: { idImage: number, classnameContainer?: string, classnameButton?: string }) {
-    const router = useRouter();
     const setImages = useSetAtom(imageListAtom);
     return (
         <form className={classnameContainer} action={
@@ -26,7 +24,6 @@ export default function DeleteButton({ idImage: id, classnameContainer = '', cla
                         return imageList;
                     })
                 }
-                router.back();
             }
         }>
             <Button type='submit' variant="destructive" className={classnameButton}>Delete</Button>
