@@ -72,7 +72,7 @@ Visionary Vault is deployed on Vercel. Any changes pushed to the `main` branch w
 - PostHog is used to track user interactions and gather analytics data.
 - Sentry is used to monitor and report errors in real-time.
 
-## Acknowledgements
+## Stack & Technologies Used
 
 - **T3 Stack**: Web development stack made by [Theo](https://x.com/t3dotgg).
 - **Next.js**: The React framework for production.
