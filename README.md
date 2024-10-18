@@ -1,7 +1,6 @@
 # Visionary Vault
 
 Visionary Vault is a gallery application built using the T3 Stack with Next.js. The project provides a modern and efficient platform for users to upload, view, and manage images, complete with authentication, database integration, and analytics.
-It's based on the video [From 0 to Production - The Modern React Tutorial (RSCs, Next.js, Shadui, Drizzle, TS and more)](https://www.youtube.com/watch?v=d5x0JCZbAJs), where I decided to built it by myself using the stack and recommended technologies to have a production-ready app.
 
 Right now there is a whitelist preventing anyone of using the service. If you wanna use it and add you to the whitelist just contact me and tell me:
 
